@@ -1,24 +1,27 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { myProjects } from '../constants'
-
-const projectCount=myProjects.length;
+import { Canvas } from '@react-three/fiber';
+import { Center, OrbitControls } from '@react-three/drei';
+import DemoComputer from '../components/DemoComputer';
+import CanvasLoader from '../components/canvasloader';
+const projectCount = myProjects.length;
 
 const Projects = () => {
 
-    const[selectedProjectIndex,setSelectedProjectIndex]=useState(0);
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
 
     const currentProject = myProjects[selectedProjectIndex];
-    
-    const handleNavigation=(direction)=>{
-        setSelectedProjectIndex((prevIndex)=>{
-            if(direction === 'previous'){
-                return prevIndex ===0 ? projectCount-1: prevIndex-1
-            }else{
-                return prevIndex===projectCount-1 ? 0: prevIndex+1
+
+    const handleNavigation = (direction) => {
+        setSelectedProjectIndex((prevIndex) => {
+            if (direction === 'previous') {
+                return prevIndex === 0 ? projectCount - 1 : prevIndex - 1
+            } else {
+                return prevIndex === projectCount - 1 ? 0 : prevIndex + 1
             }
         })
     }
-    
+
 
     return (
         <section className='c-space my-20'>
@@ -30,7 +33,7 @@ const Projects = () => {
                     </div>
 
                     <div className='p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg' style={myProjects[0].logoStyle} alt='logo'>
-                        <img src={myProjects[0].logo} alt='logo' className='w-10 h-10 shadow-sm' />
+                        <img src={myProjects[selectedProjectIndex].logo} alt='logo' className='w-10 h-10 shadow-sm' />
                     </div>
                     <div className='flex flex-col gap-5 text-white-500 my-5' >
                         <p className='text-white text-2xl font-semibold text-animated'>{currentProject.title}</p>
@@ -68,6 +71,23 @@ const Projects = () => {
                     </div>
 
                 </div>
+
+                <div className='border border-black-300 bg-black-200 rounded-lg h-96 md:h-full '>
+
+                    <Canvas>
+                        <ambientLight intensity={Math.PI / 2} />
+                        <directionalLight />
+                        <Center />
+                        <Suspense fallback={<CanvasLoader />}>
+                            <group scale={1.5} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
+                                <DemoComputer />
+                            </group>
+                        </Suspense>
+                        <OrbitControls maxPolarAngle={Math.PI} enableZoom={false} />
+                    </Canvas>
+
+                </div>
+
             </div>
         </section>
     )
