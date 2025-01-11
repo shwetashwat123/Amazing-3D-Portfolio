@@ -12,45 +12,45 @@ import Cube from "../components/cube";
 import Rings from "../components/rings";
 import HeroCamera from "../components/herocamera";
 const Hero = () => {
-    const x = useControls('HackerRoom', {
-        positionX: {
-            value: 2.5,
-            min: -10,
-            max: 10
-        }, positionY: {
-            value: 2.5,
-            min: -10,
-            max: 10
-        }, positionZ: {
-            value: 2.5,
-            min: -10,
-            max: 10
-        }, rotationX: {
-            value: 0,
-            min: -10,
-            max: 10
-        }, rotationY: {
-            value: 0,
-            min: -10,
-            max: 10
-        }, rotationZ: {
-            value: 0,
-            min: -10,
-            max: 10
-        }, scale: {
-            value: 1,
-            min: 0.1,
-            max: 10
-        }, scale: {
-            value: 1,
-            min: 0.1,
-            max: 10
-        }, scale: {
-            value: 1,
-            min: 0.1,
-            max: 10
-        }
-    })
+    // const x = useControls('HackerRoom', {
+    //     positionX: {
+    //         value: 2.5,
+    //         min: -10,
+    //         max: 10
+    //     }, positionY: {
+    //         value: 2.5,
+    //         min: -10,
+    //         max: 10
+    //     }, positionZ: {
+    //         value: 2.5,
+    //         min: -10,
+    //         max: 10
+    //     }, rotationX: {
+    //         value: 0,
+    //         min: -10,
+    //         max: 10
+    //     }, rotationY: {
+    //         value: 0,
+    //         min: -10,
+    //         max: 10
+    //     }, rotationZ: {
+    //         value: 0,
+    //         min: -10,
+    //         max: 10
+    //     }, scale: {
+    //         value: 1,
+    //         min: 0.1,
+    //         max: 10
+    //     }, scale: {
+    //         value: 1,
+    //         min: 0.1,
+    //         max: 10
+    //     }, scale: {
+    //         value: 1,
+    //         min: 0.1,
+    //         max: 10
+    //     }
+    // })
 
     const isMobile = useMediaQuery({ maxWidth: 768 })
     const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 })

@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { Center, OrbitControls } from '@react-three/drei';
 import DemoComputer from '../components/DemoComputer';
 import CanvasLoader from '../components/canvasloader';
+
 const projectCount = myProjects.length;
 
 const Projects = () => {
@@ -13,11 +14,13 @@ const Projects = () => {
     const currentProject = myProjects[selectedProjectIndex];
 
     const handleNavigation = (direction) => {
-        setSelectedProjectIndex((prevIndex) => {
+        console.log(direction)
+        setSelectedProjectIndex((currentIndex) => {
+            console.log(projectCount);
             if (direction === 'previous') {
-                return prevIndex === 0 ? projectCount - 1 : prevIndex - 1
+                return currentIndex === 0 ? projectCount - 1 : currentIndex - 1
             } else {
-                return prevIndex === projectCount - 1 ? 0 : prevIndex + 1
+                return currentIndex === projectCount - 1 ? 0 : currentIndex + 1
             }
         })
     }
@@ -65,7 +68,7 @@ const Projects = () => {
                         <button className='arrow-btn' onClick={() => { handleNavigation('previous') }}>
                             <img src='/assets/left-arrow.png' className='w-4 h-4' alt='left arrow' />
                         </button>
-                        <button className='arrow-btn' onClick={() => { handleNavigation('previous') }}>
+                        <button className='arrow-btn' onClick={() => { handleNavigation('next') }}>
                             <img src='/assets/right-arrow.png' className='w-4 h-4' alt='right arrow' />
                         </button>
                     </div>
