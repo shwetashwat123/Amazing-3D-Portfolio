@@ -61,7 +61,7 @@ const Hero = () => {
     return (
         <section className="min-h-screen border-blue-500 flex flex-col  relative">
             <div className="sm:mt-36 mt-20"> <p className="font-generalsans text-white sm:3xl text-2xl font-medium text-center ">Hi,I am Shwetashwat<span className="mx-2 waving-hand">👋</span></p>
-                <p className="text-gray_gradient text-center mt-3 text-3xl mr-15 font-medium">Building Products and Brands</p>
+                <p className="text-gray_gradient text-center mt-3 text-2xl mr-15 font-medium">Delivering Aesthetic and Responsive Web Applications</p>
 
             </div>
 

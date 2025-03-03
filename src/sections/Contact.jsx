@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-
+import emailjs from '@emailjs/browser'
 const Contact = () => {
     const formRef = useRef()
     const [loading, setLoading] = useState(false);
@@ -9,6 +9,36 @@ const Contact = () => {
         email: '',
         message: ''
     })
+
+
+    const handleChange = ({ target: { name, value } }) => {
+
+        setForm({ ...form, [name]: value })
+    }
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+          await emailjs.send('service_bgveagh', 'template_wtzvi8w',
+                {
+                    from_name: form.name,
+                    to_name: 'shwetashwat',
+                    from_email: form.email,
+                    to_email: 'shwetashwatsingh8888@gmail.com',
+                    message: form.message
+                }, 'tQnVEBVo0SbHGs0lm')
+
+            setLoading(false)
+            alert('your message has been sent!')
+        } catch (error) {
+            setLoading(false);
+            alert('Something went wrong')
+        }
+
+
+    }
 
 
 
@@ -21,7 +51,7 @@ const Contact = () => {
                     <p className='text-lg text-white-600'>Whether you rae looking to build a new Website ,improve your existing platform,or bring a unique project to life,I'm here to help</p>
 
 
-                    <form ref={formRef} className='mt-12 flex flex-col space-y-7'>
+                    <form ref={formRef} onSubmit={handleSubmit} className='mt-12 flex flex-col space-y-7'>
 
                         <label className='space-y-3 '>
                             <span className='field-label'>
@@ -34,6 +64,7 @@ const Contact = () => {
                                 name="name"
                                 value={form.name}
                                 required
+                                onChange={handleChange}
                                 className='field-input'
                                 placeholder='John Doe'
 
@@ -50,6 +81,7 @@ const Contact = () => {
                                 name="email"
                                 value={form.email}
                                 required
+                                onChange={handleChange}
                                 className='field-input'
                                 placeholder='JohnDoe@gmail.com'
 
@@ -66,6 +98,7 @@ const Contact = () => {
                                 value={form.message}
                                 required
                                 rows={5}
+                                onChange={handleChange}
                                 className='field-input'
                                 placeholder='Hi,I am interested in...'
 
